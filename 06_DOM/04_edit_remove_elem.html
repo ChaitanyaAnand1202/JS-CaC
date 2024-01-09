@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+    <title>Chai and Code</title>
+</head>
+<body>
+    <ul class="languages">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addItem(langName) {
+        const lang = document.createElement('li')
+        lang.innerText = `${langName}`
+        document.querySelector(".languages").appendChild(lang)
+        console.log(`List item added: ${langName}`);
+    }
+
+    addItem('C++')
+    addItem('C')
+    addItem('Python')
+
+    // Editing contents of elements
+    const secondLang = document.querySelector("li:nth-child(2)")
+    secondLang.innerText = "goLang"
+    console.log("edited 2nd child to golang");
+
+    // replacing elements with new element
+    const newLang = document.createElement('li')
+    newLang.innerText = "ruby"
+    document.querySelector("li:nth-child(3)").replaceWith(newLang)
+    console.log("replaced third lang to ruby");
+
+    // editing the first element
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>TypeScript</li>' // generally dont use outerHTML
+    // firstLang.innerHTML = 'Rust';
+    console.log("edited first lang to typescript");
+
+    // editing the last element
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.innerHTML = 'BhaiLang' 
+    console.log("edited last lang ");
+
+    // removing last element
+    lastLang.remove()
+    console.log("removed last lang");
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+    <title>Chai aur Code</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const div1 = document.createElement('div');
+    div1.innerText = 'Chai aur Coffee'
+    console.log(div1);
+    div1.className = 'main'
+    div1.id = 'myID' 
+    div1.setAttribute('title', Math.floor(Math.random()+1))
+    div1.style.backgroundColor = 'aliceblue'
+    div1.style.color = 'green'
+    div1.style.padding = '12px'
+    console.log(div1.childNodes);
+    const addText = document.createTextNode("Cafe for all your needs")
+    div1.appendChild(addText)
+    console.log(div1.childNodes);
+
+    document.body.appendChild(div1)
+
+    const menu = document.createElement('ul')
+    const menuItems = [document.createElement('li'),document.createElement('li'),document.createElement('li'),document.createElement('li')]
+    
+    menuItems[0].innerText = "Cuppacino"
+    menuItems[1].innerText = "Americano"
+    menuItems[2].innerText = "Espresso"
+    menuItems[3].innerText = "Chai latte"
+
+    menuItems.forEach( (item) => menu.appendChild(item) );
+
+    console.log(menu);
+    console.log(menuItems);
+    
+    document.body.appendChild(menu); 
+
+    menuItems.forEach( (item) => {
+        item.style.padding = '12px'
+        item.style.color = 'purple'
+        item.style.backgroundColor = 'pink'
+    } )
+</script>
+</html>
