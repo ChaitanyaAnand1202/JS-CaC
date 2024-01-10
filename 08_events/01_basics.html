@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #212121;
+      color: aliceblue;
+    }
+
+    a {
+      color: aliceblue;
+    }
+  </style>
+  <title>html Events</title>
+</head>
+
+<body>
+  <h2>Amazing image</h2>
+  <div>
+    <ul id="images">
+      <li><img width="200px" id="photoshop"
+          src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          alt="photoshop"></li>
+      <li><img width="200px" id="japan"
+          src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          alt=""></li>
+      <li><img width="200px" id="river"
+          src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          alt=""></li>
+      <li><img width="200px" id="owl"
+          src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          alt=""></li>
+      <li><img width="200px" id="prayer"
+          src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          alt=""></li>
+      <li><a target="blank" href="https://google.com" id="google">Google</a></li>
+    </ul>
+  </div>
+</body>
+<script>
+  /* 3 ways to add click events:
+    -> within the element tag itself
+    -> using the function for that particular event (onClick)
+    -> adding an event listener to the element 
+    other method such as addEvent() or the .on function of jQuery 
+  */
+
+  // using the onclick function
+  // document.querySelector("#prayer").onclick = () => {
+  //   alert("prayer clicked")
+  // }
+
+  /*
+    Important properties of event: console.log(e) to find the following:
+    type, timestamp, defaultPrevented
+    target, toElement, srcElement, currentTarget,
+    clientX, clientY, screenX, screenY
+    altkey, ctrlkey, shiftkey, keyCode
+  */
+
+  /*
+    the third parameter is call use capture : by default set to false
+    use capture is used to determine in which order event propegates in DOM
+    if usecapture is false, it means that event executes in bubbling phase, so first target element knows, then the higher parents
+    if it is set to true, then parents know about event first and then lower the Dom tree until target element
+
+    to stop this propogation completely (neither up or down -> only to the target element), use e.stopPropogation()
+  */
+
+  // document.querySelector("#images").addEventListener('click', (e) => {
+  //   console.log("ul clicked");
+  // }, false)
+
+  // document.querySelector("#owl").addEventListener('click', (e) => {
+  //   console.log("owl clicked");
+  //   e.stopPropagation();
+  // }, false)
+
+  // // prevent the default action of links (anchor tags)
+  // // also we will prevent it from running ul script on clicking (stop propogation)
+  // document.querySelector("#google").addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   console.log("google clicked");
+  // }, false)
+
+
+
+
+  // Task: add an event listener such that when clicking on an image -> that complete list item is deleted
+  // not only the image itself, but the list item <li> that contains it should also be deleted
+  /*
+    doing srcElement will give the source of the event -> the element on which the event happened
+    we will get the image on which user clicked, but we want to remove not the image but the <li>
+    so we will select the parent on the image -> li and remove that
+  */
+
+  /*
+    problem faced : if google is clicked upon, then the whole ul is deleted becuase the parent of it is the ul itself
+    To prevent that, we will need to ensure that the elements deleted are only those that have srcElement as image
+    To do so -> use the nodeName property of srcElement which gives the name of type of srcElement
+  */
+  document.querySelector("#images").addEventListener('click', (e) => {
+    console.log(e);
+    console.log(e.srcElement.nodeName);
+    console.log(e.srcElement.parentNode); // element to be removed
+
+    if (e.srcElement.nodeName == "IMG") {
+
+      const removeEle = e.srcElement.parentNode;
+      // one way to remove the element
+      // removeEle.remove();
+
+      // since this remove method is relatively new, following is used generally
+      removeEle.parentNode.removeChild(removeEle)
+    }
+  }, false)
+
+
+</script>
+
+</html>
