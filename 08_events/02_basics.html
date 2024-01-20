@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #212121;
+      color: aliceblue;
+    }
+  </style>
+  <title>Events</title>
+</head>
+
+<body>
+  <h1>Chai aur Code</h1>
+  <button id="stop">Stop</button>
+</body>
+<script>
+  // console.log("Hello")
+  const sayName = function () {
+    console.log("Hello");
+  }
+
+  const changeHead = function () {
+    document.querySelector("h1").innerText = "Best JS Series"
+  }
+  const nameChange = setTimeout(sayName, 1000)
+  const headChange = setTimeout(changeHead, 2000)
+
+  document.querySelector("#stop").addEventListener("click", () => {
+    clearTimeout(headChange)
+    console.log("Stopped");
+  })
+
+</script>
+
+</html>

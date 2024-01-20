@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #212121;
+      color: aliceblue;
+    }
+  </style>
+  <title>Async</title>
+</head>
+
+<body>
+  <h1>Chai aur Code</h1>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+</body>
+<script>
+  let intervalId;
+  const sayHello = function (str) {
+    console.log("Hello", Date.now(), str);
+  }
+  const startEvent = function () {
+    intervalId = setInterval(sayHello, 2000, "Hi")
+  }
+  const endEvent = function () {
+    clearInterval(intervalId)
+    console.log("Stopped");
+  }
+
+  document.querySelector("#start").addEventListener("click", startEvent)
+  document.querySelector("#stop").addEventListener("click", endEvent)
+</script>
+
+</html>
